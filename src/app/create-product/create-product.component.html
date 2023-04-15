@@ -1,0 +1,31 @@
+<h1>Create product</h1>
+<form #productForms = "ngForm" (ngSubmit)="onProductCreate(productForms.value)">
+    <div class="mb-3 row">
+        
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-12 col-form-label">product Name</label>
+    
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="pname" ngModel>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-12 col-form-label">product Description</label>
+    
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="des" ngModel>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-12 col-form-label">price</label>
+    
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="price" ngModel >
+        </div>
+        <div class="col-sm-10 mt-3">
+          <input type="submit" class="btn btn-primary form-control" value="Create Product" ngModel >
+        </div>
+      </div>
+    </div>
+
+</form>
