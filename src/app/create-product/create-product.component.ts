@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { clippingParents } from '@popperjs/core';
-import { map } from 'rxjs';
-import { product } from '../model/product';
 
 @Component({
   selector: 'app-create-product',
@@ -19,6 +17,7 @@ export class CreateProductComponent {
     .subscribe((res) => {
       console.log(res);
     })
+    
     }
 
     

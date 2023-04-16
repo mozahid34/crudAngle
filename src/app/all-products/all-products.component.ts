@@ -13,6 +13,7 @@ export class AllProductsComponent implements OnInit {
 
 
   allproducts:product[] = [];
+  isFeatching:boolean = false;
 
   ngOnInit() {
     this.fetchData();
@@ -20,14 +21,28 @@ export class AllProductsComponent implements OnInit {
   productFetch() {
     this.fetchData();
   }
+  onDel(id:any) {
+    this.http.delete(`https://angularfirst-3d22c-default-rtdb.firebaseio.com/products/${id}.json`)
+    .subscribe((res)=> {
+      this.productFetch();
+    })
+  }
+  clrAll() {
+    this.http.delete(`https://angularfirst-3d22c-default-rtdb.firebaseio.com/products.json`)
+    .subscribe((res)=> {
+      this.productFetch();
+    })
+  }
 
 
 
 
 
   private fetchData() {
+    this.isFeatching = true;
     this.http.get('https://angularfirst-3d22c-default-rtdb.firebaseio.com/products.json')
     .pipe(map((res:{[key:string]:product}) => {
+      
       const products = [];
       for (const key in res) {
         if(res.hasOwnProperty(key)) {
@@ -39,6 +54,7 @@ export class AllProductsComponent implements OnInit {
     }))
     .subscribe((products) => {
       this.allproducts = products;
+      this.isFeatching = false;
     })
   }
 
