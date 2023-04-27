@@ -10,7 +10,7 @@
                 <th scope="col">Product Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">price</th>
-                <th scope="col"></th>
+                <th colspan="2" scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -27,15 +27,23 @@
               <tr *ngFor="let prod of allproducts">
                 
                 <th scope="row">{{prod.id}}</th>
-                <td> {{prod.pname}}</td>
-                <td> {{prod.des}} </td>
-                <td>${{prod.price}}</td>
-                <td ><button (click)="onDel(prod.id)" class="btn btn-sm btn-danger">Delete</button></td>
+                <td *ngIf="!isEdit"> {{prod.pname}}</td>
+                <td *ngIf="isEdit"> <input type="text" value="{{prod.pname}}" name="name" id=""> </td>
+                <td *ngIf="!isEdit"> {{prod.des}} </td>
+                <td *ngIf="isEdit"> <input type="text" value="{{prod.des}}" name="des" id=""> </td>
+                <td *ngIf="!isEdit">${{prod.price}}</td>
+                <td *ngIf="isEdit"> <input type="text" value="{{prod.price}}" name="price" id=""> </td>
+                <td ><button (click)="onDel(prod.id)" class="btn btn-sm btn-danger">Delete</button>
+                      <button *ngIf="!isEdit" (click)="onEdit(prod.id)" class="btn btn-sm btn-success mx-2 my-2">Edit</button>
+                      <button *ngIf="isEdit" (click)="onUpdate(prod.id, prod)" class="btn btn-sm btn-info mx-2 my-2">Update</button>
+                      
+                </td>
               </tr>
              </tbody>
           </table>
           <button (click)="productFetch()" class="btn btn-sm btn-success me-3">Fetch Data</button>
           <button (click)="clrAll()" class="btn btn-sm btn-warning">Clear All</button>
+          
 
     </div>
 </div>
