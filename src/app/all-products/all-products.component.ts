@@ -21,7 +21,9 @@ export class AllProductsComponent implements OnInit {
     this.fetchData();
   }
   productFetch() {
+    
     this.fetchData();
+    this.isEdit = false;
   }
   onDel(id:any) {
     this.http.delete(`https://angularfirst-3d22c-default-rtdb.firebaseio.com/products/${id}.json`)
@@ -51,7 +53,11 @@ export class AllProductsComponent implements OnInit {
   }
   onUpdate(id:any, value:product) {
     this.http.put(`https://angularfirst-3d22c-default-rtdb.firebaseio.com/products/${id}.json`, value)
-    .subscribe()
+    .subscribe((res) => {
+      this.isEdit = false;
+      this.productFetch();
+
+    })
   
   }
 
